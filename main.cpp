@@ -8,6 +8,11 @@ float GetRandomFloat(float min, float max)
     return min + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (max - min)));
 }
 
+unsigned char GetRandomUChar(unsigned char min, unsigned char max)
+{
+    return min + static_cast<unsigned char>(rand() % (max - min + 1));
+}
+
 // Constants
 const int screenWidth = 1280;
 const int screenHeight = 720;
@@ -156,7 +161,7 @@ public:
 
             // Fade based on lifetime
             float alpha = 1.0f - (particles[i].lifeTime / particles[i].maxLifeTime);
-            particles[i].color.a = (unsigned char)(255 * alpha);
+            particles[i].color.a = (unsigned char)(int)(255 * alpha);
 
             // Remove dead particles
             if (particles[i].lifeTime >= particles[i].maxLifeTime)
@@ -284,7 +289,7 @@ int main()
                 float randomX = GetRandomFloat(-5.0f, 5.0f);
                 float randomY = GetRandomFloat(-3.0f, 3.0f);
                 particleSystem.AddParticles((Vector3){randomX, randomY, 0},
-                                            (Color){GetRandomFloat(100, 255), (unsigned char)GetRandomFloat(100, 255), 255, 255},
+                                            (Color){GetRandomUChar(100, 255), GetRandomUChar(100, 255), 255, 255},
                                             5);
             }
         }

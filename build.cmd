@@ -1,0 +1,1 @@
+zig/zig.exe c++ main.cpp -o dashboard.exe -Iraylib/include -Lraylib/lib -lraylib -lopengl32 -lgdi32 -lwinmm
